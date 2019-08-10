@@ -1,0 +1,12 @@
+library(lubridate)
+library(data.table)
+setwd("Desktop/Developer/DataScience/exploratory-data-analysis/ExData_Plotting1/data/")
+data <- fread("household_power_consumption.txt",header = TRUE,sep = ";")
+data$Date <- dmy(data$Date)
+data <- subset(data,data$Date == "2007-02-01" | data$Date == "2007-02-02")
+data$Global_active_power <- as.numeric(data$Global_active_power)
+# from here
+png("plot1.png",height = 480,width = 480)
+par(bg = "gray20")
+hist((data$Global_active_power),main = "Global Active Power",col = "red",bg = "black",xlab = "Global Active Power (kilowatts)")
+dev.off()
